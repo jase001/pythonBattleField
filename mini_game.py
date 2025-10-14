@@ -2,6 +2,8 @@ import math
 import random
 from abc import ABC, abstractmethod
 
+
+#CLASSES
 class Character:
     mode = "beginner"
     counter = 0
@@ -99,28 +101,7 @@ class Dragon(Monster, Healer):
         self._rage = _rage
 
 
-
-char1 = Hero("Sky",5, "boomerang", "flair", "GOTCHA", "lion crest")
-char2 = Hero("Jinx", 5 ,"subMachine gun", "shape-shifter", "GOTCHA", "lion crest")
-char3 = Hero("Vender", 5, "hammer","strength", "GOTCHA", "lion crest")    
-
-
-vil1 = Dragon("Dragon1",5, "200lb")
-vil2 = Dragon("Dragon2", 5 ,"150lb gun")
-vil3 = Dragon("Dragon3", 5, "180lb")  
-# print(char3.__str__())
-
-
-def moveToss():
-    return (random.randint(0, 1))
-def moveToss2():
-    return (random.randint(0, 3))
-
-hero = [char1, char2, char3]
-vilian = [vil1,vil2,vil3]
-roundTwoSet = []
-
-
+#METHODS
 def gamePlay(heroSet, vilian):
         max = len(hero) -1
         while max >=0 :
@@ -132,6 +113,7 @@ def gamePlay(heroSet, vilian):
             hero.remove(hero[b])
             vilian.remove(vilian[b])
             # print(vilian[b].__str__())
+
 
 def round0neGame(b, heroSet, vilian, roundTwoSet):
     print("\nLET ROUND ONE BEGIN")
@@ -162,8 +144,6 @@ def round0neGame(b, heroSet, vilian, roundTwoSet):
         roundTwoSet.append(vilian[b])
         print("round winner is", roundTwoSet[-1])
 
-gamePlay(hero,vilian)   #round 1
-print("array length is: ", len(roundTwoSet))
 
 def final(roundTwoSet):
         print("\nLET ROUND TWO BEGIN")
@@ -179,7 +159,13 @@ def final(roundTwoSet):
                         tempArr.remove(attacker)
                         attackHit = random.choice(tempArr)
                         tempArr.append(attacker)
-                        print("with health", attacker.health, attacker.attack() or attacker.roar(), attackHit.name,"with health", attackHit.health)
+                        print(attacker.name)
+
+                       
+                        if  isinstance(attacker, Hero):
+                            print("with health", attacker.health, attacker.attack(), attackHit.name, "with health", attackHit.health)
+                        elif isinstance(attacker, Dragon):
+                            print("with health", attacker.health, attacker.roar(), attackHit.name, "with health", attackHit.health)
                         
                         roundTwoSet[roundTwoSet.index(attackHit)].health -=1
             elif toss ==1 and attacker.health<attacker.maxHealth:
@@ -191,9 +177,38 @@ def final(roundTwoSet):
                 if a.health == 0:
                     print(a.name," has been ELIMINATED")
                     roundTwoSet.remove(a)
-                   
-final(roundTwoSet) 
+
+
+def moveToss():
+    return (random.randint(0, 1))
+def moveToss2():
+    return (random.randint(0, 3))
+
+
+#CREATING OBJECTS
+char1 = Hero("Sky",5, "boomerang", "flair", "GOTCHA", "lion crest")
+char2 = Hero("Jinx", 5 ,"subMachine gun", "shape-shifter", "GOTCHA", "lion crest")
+char3 = Hero("Vender", 5, "hammer","strength", "GOTCHA", "lion crest")    
+
+
+vil1 = Dragon("Dragon1",5, "200lb")
+vil2 = Dragon("Dragon2", 5 ,"150lb gun")
+vil3 = Dragon("Dragon3", 5, "180lb")  
+# print(char3.__str__())
+
+
+hero = [char1, char2, char3]
+vilian = [vil1,vil2,vil3]
+roundTwoSet = []
+
+
+gamePlay(hero,vilian)   #round 1
+print("array length is: ", len(roundTwoSet))                  
+final(roundTwoSet)      #final round
+
 
 for a in range(len(roundTwoSet)):
     if len(roundTwoSet)==1:
         print("\nWINNER for final round is :",roundTwoSet[a])
+
+
