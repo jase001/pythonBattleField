@@ -159,7 +159,7 @@ def final(roundTwoSet):
                         tempArr.remove(attacker)
                         attackHit = random.choice(tempArr)
                         tempArr.append(attacker)
-                        print(attacker.name)
+                        # print(attacker.name)
 
                        
                         if  isinstance(attacker, Hero):
@@ -201,7 +201,7 @@ hero = [char1, char2, char3]
 vilian = [vil1,vil2,vil3]
 roundTwoSet = []
 
-
+print()
 gamePlay(hero,vilian)   #round 1
 print("array length is: ", len(roundTwoSet))                  
 final(roundTwoSet)      #final round
